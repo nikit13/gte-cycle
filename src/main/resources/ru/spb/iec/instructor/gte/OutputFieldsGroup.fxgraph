@@ -1,0 +1,101 @@
+package ru.spb.iec.instructor.gte
+
+import javafx.scene.layout.GridPane
+import javafx.scene.control.Label
+import javafx.geometry.Insets
+import javafx.scene.control.TextField
+import ru.spb.iec.instructor.gte.OutputFieldsGroup
+
+dynamic component OutputFieldsGroup {
+    GridPane {
+        Label {
+            text : "Lo = ",
+            static columnIndex : 0,
+            static rowIndex : 0,
+            static margin : Insets {
+                top : 1,
+                bottom : 1
+            }
+        },
+        TextField id loText {
+            editable : false,
+            static columnIndex : 1,
+            static rowIndex : 0,
+            static fillWidth : true,
+            static margin : Insets {
+                top : 1,
+                bottom : 1
+            }
+        },
+        Label {
+            text : " кДж/кг",
+            static columnIndex : 2
+        },
+        Label {
+            text : "Q1 = ",
+            static columnIndex : 0,
+            static rowIndex : 1,
+            static margin : Insets {
+                top : 1,
+                bottom : 1
+            }
+        },
+        TextField id qOneText {
+            editable : false,
+            static columnIndex : 1,
+            static rowIndex : 1,
+            static fillWidth : true,
+            static margin : Insets {
+                top : 1,
+                bottom : 1
+            }
+        },
+        Label {
+            text : " кДж/кг",
+            static columnIndex : 2,
+            static rowIndex : 1
+        },
+        Label {
+            text : "Q2 = ",
+            static columnIndex : 0,
+            static rowIndex : 2,
+            static margin : Insets {
+                top : 1,
+                bottom : 1
+            }
+        },
+        TextField id qTwoText {
+            editable : false,
+            static columnIndex : 1,
+            static rowIndex : 2,
+            static fillWidth : true,
+            static margin : Insets {
+                top : 1,
+                bottom : 1
+            }
+        },
+        Label {
+            text : " кДж/кг",
+            static columnIndex : 2,
+            static rowIndex : 2
+        },
+        Label {
+            text : "\u03B7\u209C = ",
+            static rowIndex : 3,
+            static margin : Insets {
+                top : 1,
+                bottom : 1
+            }
+        },
+        TextField id nuText {
+            editable : false,
+            static columnIndex : 1,
+            static rowIndex : 3,
+            static fillWidth : true,
+            static margin : Insets {
+                top : 1,
+                bottom : 1
+            }
+        }
+    }
+}

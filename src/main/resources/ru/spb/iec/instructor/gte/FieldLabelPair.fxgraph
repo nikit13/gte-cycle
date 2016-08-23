@@ -1,0 +1,18 @@
+package ru.spb.iec.instructor.gte
+
+import javafx.scene.layout.GridPane
+import javafx.scene.layout.HBox
+import javafx.scene.control.Label
+import ru.spb.iec.instructor.gte.FieldLabelPair
+import javafx.scene.control.TextField
+
+dynamic component FieldLabelPair {
+    GridPane {
+        children : [
+            Label id label,
+            TextField id field {
+                static columnIndex : 1
+            }
+        ]
+    }
+}

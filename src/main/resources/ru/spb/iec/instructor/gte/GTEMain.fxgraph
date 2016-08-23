@@ -1,0 +1,150 @@
+package ru.spb.iec.instructor.gte
+
+import javafx.scene.layout.AnchorPane
+import javafx.scene.layout.GridPane
+import javafx.scene.control.Button
+import javafx.scene.layout.BorderPane
+import javafx.scene.control.MenuBar
+import javafx.scene.control.Menu
+import ru.spb.iec.instructor.gte.GteCycleController
+import javafx.scene.control.MenuItem
+import javafx.scene.input.KeyCharacterCombination
+import javafx.scene.input.KeyCodeCombination
+import javafx.scene.chart.BubbleChart
+import javafx.scene.control.Label
+import javafx.scene.text.Text
+import javafx.scene.control.TextField
+import javafx.geometry.Insets
+import ru.spb.iec.instructor.gte.OutputFieldsGroup
+import javafx.scene.control.Slider
+import javafx.scene.control.Tooltip
+import javafx.scene.layout.ColumnConstraints
+import javafx.scene.chart.NumberAxis
+import javafx.scene.chart.LineChart
+import javafx.scene.Group
+import javafx.scene.effect.Lighting
+import javafx.scene.control.TitledPane
+import javafx.scene.layout.Border
+import javafx.scene.layout.HBox
+import javafx.scene.layout.VBox
+import javafx.scene.image.ImageView
+import javafx.scene.image.Image
+import javafx.scene.control.SeparatorMenuItem
+
+component GTEMain controlledby GteCycleController {
+    BorderPane {
+        top : MenuBar {
+            menus : [
+                Menu {
+                    text : "Программа",
+                    items : [
+                        MenuItem {
+                            text : "Рассчитать цикл",
+                            accelerator : "CTRL+A",
+                            onAction : controllermethod calculateGte
+                        },
+                        MenuItem {
+                            text : "Очистить график",
+                            accelerator : "CTRL+Q",
+                            onAction : controllermethod clearGraphic
+                        },
+                        SeparatorMenuItem,
+                        MenuItem {
+                            text : "Выход",
+                            accelerator : "CTRL+X",
+                            onAction : controllermethod closeApplication
+                        }
+                    ]
+                },
+
+                Menu {
+                    text : "Информация",
+                    items : [
+                        MenuItem {
+                            text : "Авторы",
+                            accelerator : "CTRL+O",
+                            onAction : controllermethod showAboutPage
+                        }
+                    ]
+                }
+            ]
+        },
+
+        left : VBox {
+            children : [
+                TitledPane {
+                    text : "Входные данные",
+                    collapsible : false,
+                    content : VBox {
+                        children : [
+                            Label id gasTemperatureLabel {
+                                tooltip : Tooltip {
+                                    text : "Температура газов в камере сгорания"
+                                }
+                            },
+                            Slider id gasTemperatureSlider {
+                                orientation : "HORIZONTAL",
+                                min : 600,
+                                max : 2200,
+                                value : 1000,
+                                valueChanging : true,
+                                tooltip : Tooltip {
+                                    text : "Установите температуру газов в камере сгорания"
+                                }
+                            },
+                            Label id pressureRatioLabel {
+                                tooltip : Tooltip {
+                                    text : "Степень повышения давления в ГТД"
+                                }
+                            },
+                            Slider id pressureRatioSlider {
+                                orientation : "HORIZONTAL",
+                                min : 1,
+                                max : 30,
+                                value : 6,
+                                valueChanging : true,
+                                tooltip : Tooltip {
+                                    text : "Установите степень повышения давления в ГТД"
+                                }
+                            }
+                        ]
+                    }
+                },
+
+                TitledPane {
+                    text : "Результаты расчета",
+                    collapsible : false,
+                    content : OutputFieldsGroup id outputFields
+                }
+            ]
+        },
+
+        center : LineChart < Double, Double > id graphic {
+            title : "График",
+            animated : true,
+            xAxis : NumberAxis {
+                label : "V, м\u00B3/кг",
+                lowerBound : 0.0,
+                upperBound : 2.0,
+                animated : true
+            },
+            yAxis : NumberAxis {
+                label : "P, бар",
+                lowerBound : 6.0,
+                upperBound : 30.0,
+                animated : true
+            },
+            axisSortingPolicy : "NONE"
+        },
+
+        right : TitledPane {
+            text : "Справочная информация",
+            collapsible : false,
+            content : ImageView {
+                image : Image {
+                    url : location "/pictures/Ra_form_cikl.png"
+                }
+            }
+        }
+    }
+}
